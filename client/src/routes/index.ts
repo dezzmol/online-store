@@ -1,6 +1,6 @@
 import {FunctionComponent} from "react";
 import {ADMIN_ROUTE, CART_ROUTE, DEVICE_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE} from "../utils/consts";
-import Auth from "../pages/Auth";
+import AuthPage from "../pages/AuthPage";
 import Admin from "../pages/Admin";
 import Cart from "../pages/Cart";
 import Shop from "../pages/Shop";
@@ -12,8 +12,7 @@ interface IPages {
 }
 
 export const publicPages: IPages[] = [
-    {path: LOGIN_ROUTE, component: Auth},
-    {path: REGISTRATION_ROUTE, component: Auth},
+    {path: LOGIN_ROUTE, component: AuthPage},
     {path: SHOP_ROUTE, component: Shop},
     {path: DEVICE_ROUTE + '/:id', component: DevicePage}
 ]

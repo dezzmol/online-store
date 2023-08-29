@@ -2,10 +2,11 @@ import React from 'react';
 import {Navigate, Route, Routes} from "react-router-dom";
 import {privatePages, publicPages} from "../routes";
 import {SHOP_ROUTE} from "../utils/consts";
+import {useAppSelector} from "../hooks/useTyped";
 
 
 const AppRouter = () => {
-    const isAuth = false
+    const {isAuth} = useAppSelector(state => state.userReducer)
     return (
         <Routes>
             {isAuth && privatePages.map(route =>

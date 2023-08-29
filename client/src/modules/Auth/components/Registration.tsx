@@ -2,11 +2,10 @@ import React, {Dispatch, FunctionComponent, SetStateAction, useState} from 'reac
 import {Button, Form, Input} from "antd";
 
 interface Props {
-    login: (email: string, password: string) => void
-
+    reg: (email: string, password: string) => void
 }
 
-const Login: FunctionComponent<Props> = ({login}) => {
+const Registration: FunctionComponent<Props> = ({reg}) => {
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
 
@@ -19,7 +18,7 @@ const Login: FunctionComponent<Props> = ({login}) => {
             initialValues={{ remember: true }}
             autoComplete="off"
         >
-            <h1>Sign In</h1>
+            <h1>Sign Up</h1>
             <Form.Item
                 label="Email"
                 name="Email"
@@ -44,8 +43,8 @@ const Login: FunctionComponent<Props> = ({login}) => {
 
 
 
-            <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-                <Button type="primary" htmlType="submit" onClick={() => login(email, password)}>
+            <Form.Item wrapperCol={{ offset: 8, span: 16 }} style={{marginLeft: '0'}}>
+                <Button type="primary" htmlType="submit" onClick={() => reg(email, password)}>
                     Submit
                 </Button>
             </Form.Item>
@@ -53,4 +52,4 @@ const Login: FunctionComponent<Props> = ({login}) => {
     );
 };
 
-export default Login;
+export default Registration;
