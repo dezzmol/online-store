@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {BrowserRouter} from "react-router-dom";
-import AppRouter from "./components/AppRouter";
+import {AppRouter} from "./modules/AppRouter";
 import {ConfigProvider} from "antd";
 import {GlobalLayout} from "./modules/Layout";
 import {Theme} from "./theme";

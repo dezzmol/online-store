@@ -4,6 +4,7 @@ import {Content, Footer, Header} from "antd/es/layout/layout";
 import {useNavigate} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../../hooks/useTyped";
 import {deleteUser} from "../../../store/slice/userSlice";
+import {LockOutlined, LoginOutlined, LogoutOutlined, ShoppingCartOutlined, ShoppingOutlined} from "@ant-design/icons";
 
 interface IProps {
     children: React.ReactNode
@@ -30,35 +31,42 @@ const GlobalLayout: FunctionComponent<IProps> = ({children}) => {
 
     return (
         <Layout>
-            <Header>
+            <Header
+                style={{background: "#ffffff"}}
+            >
 
                 <Menu
-                    theme='dark'
+                    theme='light'
                     mode='horizontal'
-                    selectable={false}
+                    selectable={true}
                     style={{}}
                 >
 
                     <Menu.Item onClick={() => navigate('/')}>
+                        <ShoppingOutlined />
                         SHOP
+                    </Menu.Item>
+
+                    <Menu.Item onClick={() => navigate('/cart')}>
+                        <ShoppingCartOutlined />
+                        CART
                     </Menu.Item>
 
                     {isAuth ?
                         <Menu.Item onClick={() => showModal()}>
+                            <LogoutOutlined />
                             LOGOUT
                         </Menu.Item>
                         :
                         <Menu.Item onClick={() => navigate('/login')}>
+                            <LoginOutlined />
                             LOGIN
                         </Menu.Item>
                     }
 
-                    <Menu.Item onClick={() => navigate('/cart')}>
-                        CART
-                    </Menu.Item>
-
                     {role === 'ADMIN' &&
                         <Menu.Item onClick={() => navigate('/admin')}>
+                            <LockOutlined />
                             ADMIN
                         </Menu.Item>
                     }
@@ -66,7 +74,7 @@ const GlobalLayout: FunctionComponent<IProps> = ({children}) => {
 
             </Header>
             <Content style={{margin: '50px 50px'}}>
-                <div className="site-layout-content" style={{height: '100vh', padding: '50px 50px'}}>
+                <div className="site-layout-content" style={{minHeight: '100vh', padding: '50px 0px'}}>
                     {children}
                     <Modal title="Are you sure?" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
                         <p>Are you going to logout?</p>

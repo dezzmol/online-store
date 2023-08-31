@@ -16,9 +16,24 @@ class BrandController {
         }
     }
 
-    async getAll(req, res) {
-        const brand = await Brand.findAll()
-        return res.json(brand)
+    async getAll(req, res, next) {
+        try {
+            const brand = await Brand.findAll()
+            return res.json(brand)
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+
+    }
+
+    async getOne(req, res, next) {
+        try {
+            const brandId = req.params.id
+            const type = await Brand.findOne({where: {id: brandId}})
+            return res.json(type)
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
     }
 }
 

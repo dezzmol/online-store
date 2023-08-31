@@ -6,6 +6,7 @@ export interface IDevice {
     img: string;
     typeId: number;
     brandId: number;
+    info: IDeviceInfo[]
 }
 
 export interface DeviceArray {
@@ -20,5 +21,17 @@ interface IDeviceInfo {
 }
 
 export interface IType {
+    id: number;
     name: string
+}
+
+export interface IBrand {
+    id: number;
+    name: string;
+}
+
+export interface IDeviceParams {
+    limit?: number;
+    typeId?: number;
+
 }

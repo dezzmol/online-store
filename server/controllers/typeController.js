@@ -28,8 +28,8 @@ class TypeController {
 
     async getOne(req, res, next) {
         try {
-            const id = req.body
-            const type = await Type.findOne({where: {id: id}})
+            const typeId = req.params.id
+            const type = await Type.findOne({where: {id: typeId}})
             return res.json(type)
         } catch (e) {
             next(ApiError.badRequest(e.message))

@@ -1,17 +1,19 @@
 import React, {FunctionComponent} from 'react';
 import {IDevice} from "../types";
-import {Card, Col} from "antd";
-import {BASE_URL} from "../../../utils/consts";
+import {Card, Col, Divider, Rate} from "antd";
+import {BASE_URL} from "../../AppRouter/utils/consts";
 import Meta from "antd/es/card/Meta";
 import {typeAPI} from "../api/typeAPI";
+import {useNavigate} from "react-router-dom";
+import {brandAPI} from "../api/brandAPI";
 
 interface Props {
     device: IDevice;
 }
 
 const DeviceForm: FunctionComponent<Props> = ({device}) => {
-    const {data: typeName} = typeAPI.useGetOneTypeQuery(device.typeId)
-    console.log(typeName)
+    const {data: brand} = brandAPI.useGetOneTypeQuery(device.brandId)
+    const navigate = useNavigate()
     return (
         <Card
             style={{width: '300px' }}
@@ -23,11 +25,14 @@ const DeviceForm: FunctionComponent<Props> = ({device}) => {
                 style={{padding: '30px 30px'}}
             />}
             hoverable={true}
+            onClick={() => navigate('/device/' + device.id)}
         >
             <Meta
-                title={typeName?.name + device.name}
+                title={brand?.name + " " + device.name}
                 description={'Price: ' + device.price + "$"}
             />
+            <Divider />
+            <Rate disabled={true} defaultValue={device.rating / 2} count={5} allowHalf={true}/>
         </Card>
     );
 };
