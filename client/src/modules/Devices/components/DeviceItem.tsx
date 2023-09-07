@@ -7,6 +7,7 @@ import classes from "./DeviceItem.module.css"
 import {BASE_URL} from "../../AppRouter/utils/consts";
 import {useAppSelector} from "../../../hooks/useTyped";
 import {useNavigate} from "react-router-dom";
+import {cartAPI} from "../../Cart";
 
 interface Props {
     isLoading: boolean;
@@ -16,7 +17,9 @@ interface Props {
 const DeviceItem: FunctionComponent<Props> = ({device, isLoading}) => {
     const {data: brand} = brandAPI.useGetOneTypeQuery(device.brandId)
     const {isAuth} = useAppSelector(state => state.userReducer)
+    const token = localStorage.getItem('token')
     const navigate = useNavigate()
+    const [mutate] = cartAPI.useAddToCartMutation()
 
     if (isLoading) {
         return (
@@ -26,7 +29,9 @@ const DeviceItem: FunctionComponent<Props> = ({device, isLoading}) => {
         )
     }
 
-
+    const handleAddToCart = () => {
+        mutate({deviceID: device.id, token})
+    }
 
     return (
         <Card title={brand?.name + " " + device?.name}>
@@ -50,7 +55,7 @@ const DeviceItem: FunctionComponent<Props> = ({device, isLoading}) => {
                         </div>
                         <h1>{device?.price}$</h1>
                         {isAuth ?
-                            <Button>Add to cart</Button>
+                            <Button onClick={() => handleAddToCart()}>Add to cart</Button>
                             :
                             <Button onClick={() => navigate('/login')}>LOGIN</Button>
                         }

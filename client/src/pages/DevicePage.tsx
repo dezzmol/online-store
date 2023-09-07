@@ -18,7 +18,6 @@ const DevicePage: FunctionComponent = () => {
                     <DeviceItem device={device} isLoading={isLoading}/>
                 }
             </Suspense>
-
         </div>
     );
 };

@@ -1,5 +1,5 @@
 import React, {FunctionComponent, useState} from 'react';
-import {Col, Layout, Menu, Modal, Row} from "antd";
+import {Layout, Menu, Modal} from "antd";
 import {Content, Footer, Header} from "antd/es/layout/layout";
 import {useNavigate} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../../hooks/useTyped";

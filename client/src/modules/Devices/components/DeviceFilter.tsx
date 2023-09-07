@@ -14,7 +14,6 @@ const DeviceFilter = memo(function Filter({setType}: Props) {
         setType(typeName)
     }, [])
 
-    console.log('filter rendered')
 
     return (
         <Card
