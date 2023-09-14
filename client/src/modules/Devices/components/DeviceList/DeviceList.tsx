@@ -1,9 +1,9 @@
 import React, {FunctionComponent, useState} from 'react';
-import {deviceAPI} from "../api/deviceAPI";
+import {deviceAPI} from "../../api/deviceAPI";
 import {Col, Grid, Row} from "antd";
-import DeviceForm from './DeviceForm';
+import DeviceForm from '../DeviceForm';
 import {LoadingOutlined} from "@ant-design/icons";
-import DeviceFilter from "./DeviceFilter";
+import DeviceFilter from "../DeviceFilter";
 import classes from './DeviceList.module.css'
 
 const DeviceList: FunctionComponent = () => {

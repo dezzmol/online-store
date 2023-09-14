@@ -1,14 +1,14 @@
 import React, {FunctionComponent} from 'react';
-import {IType} from "../../types";
+import {IBrand} from "../../types";
 import {Divider} from "antd";
-import classes from "../Form.module.css"
-import TypeItem from "./TypeItem";
+import classes from "../Form.module.css";
+import BrandItem from "./BrandItem";
 
 interface Props {
-    types: IType[]
+    brands: IBrand[]
 }
 
-const TypeList: FunctionComponent<Props> = ({types}) => {
+const BrandsList: FunctionComponent<Props> = ({brands}) => {
     return (
         <div>
             <Divider/>
@@ -25,12 +25,13 @@ const TypeList: FunctionComponent<Props> = ({types}) => {
                     </div>
                 </div>
 
-                {types.map(type =>
-                    <TypeItem key={type.id} type={type}/>
+                {brands.map(brand =>
+                    <BrandItem key={brand.id} brand={brand}/>
                 )}
             </div>
+
         </div>
     );
 };
 
-export default TypeList;
+export default BrandsList;

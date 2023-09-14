@@ -34,6 +34,22 @@ class TypeController {
             next(ApiError.badRequest(e.message))
         }
     }
+
+    async edit(req, res, next) {
+        try {
+            const typeId = req.body.type.id
+            const newName = req.body.type.name
+            const type = await Type.findOne({where: {id: typeId}})
+            if (!type) {
+                return res.json({message: "Type is not exist"})
+            }
+            type.update({name: newName})
+            return res.json(type)
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
+
 }
 
 module.exports = new TypeController()

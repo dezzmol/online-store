@@ -1,11 +1,11 @@
-import React, {FunctionComponent, useState} from 'react';
+import React, {FunctionComponent, memo, useState} from 'react';
 import {Button, Card} from "antd";
 import classes from './AdminMain.module.css'
 import AddTypeForm from './addTypes/AddTypeForm';
 import AddBrandForm from "./addBrands/AddBrandForm";
 import AddDeviceForm from "./addDevices/AddDeviceForm";
 
-const AdminMain: FunctionComponent = () => {
+const AdminMain = memo(function Admin() {
     const [isCreatingMenuShow, setIsCreatingMenuShow] = useState<boolean>(false)
     const [content, setContent] = useState<number>(0) //0 - empty content, 1 - add type, 2 - add brand, 3 - add device
 
@@ -16,7 +16,6 @@ const AdminMain: FunctionComponent = () => {
 
     return (
         <div>
-
             <Card title={'Admin panel'}>
                 <div className={classes.container}>
                     <Button onClick={() => changeContent(1)}>Add type</Button>
@@ -35,6 +34,6 @@ const AdminMain: FunctionComponent = () => {
             }
         </div>
     );
-};
+});
 
-export {AdminMain};
+export default AdminMain;

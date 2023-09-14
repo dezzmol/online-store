@@ -8,8 +8,6 @@ interface IAuth {
     isAuth: boolean
 }
 
-
-
 interface IDecodeToken {
     email: string;
     id: number;

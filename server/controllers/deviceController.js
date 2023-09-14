@@ -21,9 +21,21 @@ class DeviceController {
                     })
                 )
             }
+            return res.json(device)
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
 
+    async editDevice(req, res, next) {
+        try {
+            let {id, name, price} = req.body
+            const device = Device.findOne({where: {id}})
+            if (!device) {
+                res.json({message: "Device doesn't exist"})
+            }
 
-
+            device.update({name, price})
             return res.json(device)
         } catch (e) {
             next(ApiError.badRequest(e.message))

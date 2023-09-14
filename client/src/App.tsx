@@ -6,7 +6,6 @@ import {GlobalLayout} from "./modules/Layout";
 import {Theme} from "./theme";
 import {useAppDispatch} from "./hooks/useTyped";
 import {useCheckQuery} from "./modules/Auth";
-import jwtDecode from "jwt-decode";
 import {setUser} from "./store/slice/userSlice";
 
 const App = () => {
@@ -17,14 +16,12 @@ const App = () => {
 
     useEffect(() => {
         if (data) {
-            console.log(data)
             if (data.token) {
-                console.log(data.token)
-                console.log(jwtDecode(data.token))
                 dispatch(setUser(data.token))
             }
         }
     }, [data])
+
 
 
     return (

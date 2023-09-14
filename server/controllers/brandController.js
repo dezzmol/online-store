@@ -1,4 +1,4 @@
-const {Brand, Type} = require("../models/models");
+const {Brand} = require("../models/models");
 const ApiError = require('../error/ApiError')
 
 class BrandController {
@@ -23,7 +23,6 @@ class BrandController {
         } catch (e) {
             next(ApiError.badRequest(e.message))
         }
-
     }
 
     async getOne(req, res, next) {
@@ -31,6 +30,21 @@ class BrandController {
             const brandId = req.params.id
             const type = await Brand.findOne({where: {id: brandId}})
             return res.json(type)
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
+
+    async edit(req, res, next) {
+        try {
+            const brandId = req.body.brand.id
+            const newName = req.body.brand.name
+            const brand = await Brand.findOne({where: {id: brandId}})
+            if (!brand) {
+                return res.json({message: "Brand is not exist"})
+            }
+            brand.update({name: newName})
+            return res.json(brand)
         } catch (e) {
             next(ApiError.badRequest(e.message))
         }

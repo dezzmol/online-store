@@ -1,6 +1,6 @@
 export {deviceAPI} from './api/deviceAPI'
-export {DeviceList} from './components/DeviceList'
+export {DeviceList} from './components/DeviceList/DeviceList'
 export {typeAPI} from './api/typeAPI'
-export {DeviceItem as default} from './components/DeviceItem'
+export {DeviceItem as default} from './components/DeviceItem/DeviceItem'
 export {brandAPI} from './api/brandAPI'
 export type {IDevice} from './types/index'

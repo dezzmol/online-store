@@ -1,13 +1,13 @@
 import React, {FunctionComponent} from 'react';
 import {LoadingOutlined} from "@ant-design/icons";
 import {Button, Card, Row} from "antd";
-import {IDevice} from "../types";
-import {brandAPI} from "../api/brandAPI";
+import {IDevice} from "../../types";
+import {brandAPI} from "../../api/brandAPI";
 import classes from "./DeviceItem.module.css"
-import {BASE_URL} from "../../AppRouter/utils/consts";
-import {useAppSelector} from "../../../hooks/useTyped";
+import {BASE_URL} from "../../../AppRouter/utils/consts";
+import {useAppSelector} from "../../../../hooks/useTyped";
 import {useNavigate} from "react-router-dom";
-import {cartAPI} from "../../Cart";
+import {cartAPI} from "../../../Cart";
 
 interface Props {
     isLoading: boolean;

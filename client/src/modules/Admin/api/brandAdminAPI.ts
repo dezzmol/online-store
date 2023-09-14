@@ -1,24 +1,24 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 import {BASE_API_URL} from "../../AppRouter/utils/consts";
-import {IType} from "../types";
+import {IBrand} from "../types";
 
-export const typeAdminAPI = createApi({
-    reducerPath: 'typeAdmin',
-    baseQuery: fetchBaseQuery({baseUrl: BASE_API_URL + '/type'}),
-    tagTypes: ['Types'],
+export const brandAdminAPI = createApi({
+    reducerPath: 'brandAdmin',
+    baseQuery: fetchBaseQuery({baseUrl: BASE_API_URL + '/brand'}),
+    tagTypes: ['Brands'],
     endpoints: (build) => ({
-        getOneType: build.query<IType, number>({
+        getOneBrand: build.query<IBrand, number>({
             query: (id) => ({
                 url: '/' + id
             })
         }),
-        getAllTypes: build.query<IType[], void>({
+        getAllBrands: build.query<IBrand[], void>({
             query: () => ({
                 url: '/',
             }),
-            providesTags: result => ['Types']
+            providesTags: result => ['Brands']
         }),
-        createType: build.mutation<IType, {name: string, token: string | null}>({
+        createBrand: build.mutation<IBrand, {name: string, token: string | null}>({
             query: ({name, token}) => ({
                 url: '/',
                 method: "POST",
@@ -29,20 +29,20 @@ export const typeAdminAPI = createApi({
                     'authorization': 'Bearer ' + token
                 }
             }),
-            invalidatesTags: result => ['Types']
+            invalidatesTags: result => ['Brands']
         }),
-        editType: build.mutation<IType, {type: IType, token: string | null}>({
-            query: ({type, token}) => ({
+        editBrand: build.mutation<IBrand, {brand: IBrand, token: string | null}>({
+            query: ({brand, token}) => ({
                 url: '/edit',
                 method: "POST",
                 body: {
-                    type
+                    brand
                 },
                 headers: {
                     "authorization": "Bearer " + token
                 }
             }),
-            invalidatesTags: result => ['Types']
+            invalidatesTags: result => ['Brands']
         })
     })
 })

@@ -1,14 +1,14 @@
 import React, {FunctionComponent} from 'react';
-import {IType} from "../../types";
+import {IDevice} from "../../../Devices";
 import {Divider} from "antd";
-import classes from "../Form.module.css"
-import TypeItem from "./TypeItem";
+import classes from "../Form.module.css";
+import DeviceItem from "./DeviceItem";
 
 interface Props {
-    types: IType[]
+    devices: IDevice[]
 }
 
-const TypeList: FunctionComponent<Props> = ({types}) => {
+const DeviceList: FunctionComponent<Props> = ({devices}) => {
     return (
         <div>
             <Divider/>
@@ -24,13 +24,12 @@ const TypeList: FunctionComponent<Props> = ({types}) => {
                         Edit
                     </div>
                 </div>
-
-                {types.map(type =>
-                    <TypeItem key={type.id} type={type}/>
+                {devices.map(device =>
+                    <DeviceItem device={device}/>
                 )}
             </div>
         </div>
     );
 };
 
-export default TypeList;
+export default DeviceList;
