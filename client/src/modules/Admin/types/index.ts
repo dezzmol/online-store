@@ -1,3 +1,25 @@
+export interface IDevice {
+    id: number;
+    name: string;
+    price: number;
+    rating: number;
+    img: string;
+    typeId: number;
+    brandId: number;
+    info: IDeviceInfo[]
+}
+
+export interface DeviceArray {
+    count: number;
+    rows: IDevice[]
+}
+
+interface IDeviceInfo {
+    id: number;
+    title: string;
+    desc: string;
+}
+
 export interface IType {
     id: number;
     name: string
@@ -6,4 +28,18 @@ export interface IType {
 export interface IBrand {
     id: number;
     name: string;
+}
+
+export interface IDeviceParams {
+    limit?: number;
+    typeId?: number;
+
+}
+
+export interface ICreatingDevice {
+    name: string;
+    price: number;
+    typeID: number;
+    brandID: number;
+    info?: IDeviceInfo[]
 }

@@ -16,6 +16,7 @@ const DeviceItem: FunctionComponent<Props> = ({device}) => {
     const [deviceNameText, setDeviceNameText] = useState<string>(device.name)
     const token = localStorage.getItem('token')
     const {data: BrandData} = brandAdminAPI.useGetOneBrandQuery(device.brandId)
+
     const showModal = () => {
         setIsModalOpen(true);
     };

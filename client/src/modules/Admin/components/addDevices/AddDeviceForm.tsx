@@ -1,11 +1,14 @@
-import React, {FunctionComponent} from 'react';
+import React, {FunctionComponent, useState} from 'react';
 import {deviceAdminAPI} from "../../api/deviceAdminAPI";
 import {LoadingOutlined} from "@ant-design/icons";
-import {Button, Modal} from "antd";
+import {Button, Input, Modal} from "antd";
 import DeviceList from "./DeviceList";
+import {IDevice} from "../../../Devices";
+import DeviceProperties from "./DeviceProperities";
 
 const AddDeviceForm: FunctionComponent = () => {
     const {data: devices, isLoading, isError} = deviceAdminAPI.useGetAllDevicesQuery({typeId: undefined})
+    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
     if (isLoading) {
         return (
@@ -23,16 +26,17 @@ const AddDeviceForm: FunctionComponent = () => {
         )
     }
 
+    const showModal = () => {
+        setIsModalOpen(true);
+    };
+
+
     return (
         <div>
             <h3>Add device</h3>
-            <Button>Add</Button>
+            <Button onClick={() => showModal()}>Add</Button>
             {devices && devices.rows && <DeviceList devices={devices.rows}/>}
-            <Modal
-
-            >
-                <p></p>
-            </Modal>
+            <DeviceProperties isOpen={isModalOpen} setIsOpen={setIsModalOpen}/>
         </div>
     );
 };

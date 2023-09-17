@@ -1,6 +1,6 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 import {BASE_API_URL} from "../../AppRouter/utils/consts";
-import {DeviceArray, IDevice, IDeviceParams} from "../../Devices/types";
+import {DeviceArray, ICreatingDevice, IDevice, IDeviceParams} from "../types";
 
 export const deviceAdminAPI = createApi({
     reducerPath: "deviceAdmin",
@@ -40,6 +40,29 @@ export const deviceAdminAPI = createApi({
                     'authorization': 'Bearer ' + token
                 }
             }),
+            invalidatesTags: result => ['device']
+        }),
+        createDevice: build.mutation<IDevice, {device: ICreatingDevice, file: File, token: string | null}>({
+            query: ({device, file, token}) => {
+                let bodyFormData = new FormData()
+                bodyFormData.append('name', device.name)
+                bodyFormData.append('price', device.price.toString())
+                bodyFormData.append('typeID', device.typeID.toString())
+                bodyFormData.append('brandID', device.brandID.toString())
+                bodyFormData.append('img', file)
+                if (device.info) {
+                    bodyFormData.append('info', JSON.stringify(device.info))
+                }
+                return {
+                    url: "/",
+                    method: "POST",
+                    body: bodyFormData,
+                    headers: {
+                        'authorization': 'Bearer ' + token
+                    },
+                    formData: true
+                }
+            },
             invalidatesTags: result => ['device']
         })
     })
