@@ -8,7 +8,7 @@ import classes from './DeviceList.module.css'
 
 const DeviceList: FunctionComponent = () => {
     const [typeID, setTypeID] = useState<number | undefined>()
-    const {data: devices, isLoading, isError} = deviceAPI.useGetAllDevicesQuery({typeId: typeID})
+    const {data: devices, isLoading, isError, error} = deviceAPI.useGetAllDevicesQuery({typeId: typeID})
 
 
     if (isLoading) {
@@ -22,7 +22,9 @@ const DeviceList: FunctionComponent = () => {
     if (isError) {
         return (
             <Row justify={"center"} align={"middle"} className={'h100'}>
-                {isError}
+                <>
+                    {error}
+                </>
             </Row>
         )
     }
