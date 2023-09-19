@@ -33,5 +33,5 @@ export interface IBrand {
 export interface IDeviceParams {
     limit?: number;
     typeId?: number;
-
+    page?: number;
 }

@@ -17,7 +17,9 @@ const deviceAPI = createApi({
                 } else {
                     queryParams.set('limit', '10')
                 }
-
+                if (params.page) {
+                    queryParams.set('page', params.page.toString())
+                }
                 return `/device${params ? `?${new URLSearchParams(queryParams).toString()}` : ''}`
             },
             providesTags: result => ['device']
