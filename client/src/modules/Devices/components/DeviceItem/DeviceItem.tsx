@@ -42,7 +42,7 @@ const DeviceItem: FunctionComponent<Props> = ({device, isLoading}) => {
                         src={BASE_URL + device?.img}
                         style={{
                             height: 'auto',
-                            maxWidth: '90%',
+                            maxWidth: '250px',
                             padding: '20px 20px'
                         }}
                     />

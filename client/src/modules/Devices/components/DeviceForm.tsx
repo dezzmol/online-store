@@ -16,13 +16,13 @@ const DeviceForm: FunctionComponent<Props> = ({device}) => {
     const navigate = useNavigate()
     return (
         <Card
-            style={{width: '300px' }}
+            style={{maxWidth: '300px'}}
             cover={
             <img
                 alt='pic'
                 src={BASE_URL + device.img}
                 width={'100%'}
-                style={{padding: '30px 30px'}}
+                style={{padding: '30px 30px', height: '300px', width: 'auto', margin: 'auto auto'}}
             />}
             hoverable={true}
             onClick={() => navigate('/device/' + device.id)}
